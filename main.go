@@ -7,8 +7,6 @@ import (
     "github.com/gorilla/websocket"
 )
 
-
-
 var upgrader = websocket.Upgrader{
     ReadBufferSize:  1024,
     WriteBufferSize: 1024,
@@ -58,10 +56,6 @@ func wsEndpoint(w http.ResponseWriter, r *http.Request) {
 }
 
 
-func setupRoutes() {
-    http.HandleFunc("/", homePage)
-    http.HandleFunc("/ws", wsEndpoint)
-}
 
 func main() {
     fmt.Println("Hello World")

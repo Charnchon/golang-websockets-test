@@ -8,25 +8,21 @@
   </head>
   <body>
     <h2>Hello World</h2>
-
-    <script>
-        let socket = new WebSocket("ws://127.0.0.1:8080/ws");
-        console.log("Attempting Connection...");
-
-        socket.onopen = () => {
-            console.log("Successfully Connected");
-            socket.send("Hi From the Client!")
-        };
-        
-        socket.onclose = event => {
-            console.log("Socket Closed Connection: ", event);
-            socket.send("Client Closed!")
-        };
-
-        socket.onerror = error => {
-            console.log("Socket Error: ", error);
-        };
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="connector.js"></script>
+    <script >
+      function sendForm(form){
+        socket.send($(form).serialize())
+        console.log('sent form: ' + $(form).serialize());
+        return false;
+      }
     </script>
+    <form enctype="application/json" onsubmit="return sendForm(this)">
+        Say Something:
+        <input type="text" name="test"><br>
+        <input type="submit">
+    </form>
+    <script></script>
+
   </body>
 </html>
